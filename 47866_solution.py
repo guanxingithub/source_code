@@ -18,7 +18,7 @@ with tf.device(f"/GPU:{gpu_to_use}"):
 dltensor = tf.experimental.dlpack.to_dlpack(tensor)
 array1 = cupy.fromDlpack(dltensor)
 
-# Converting from CuPy to TF with dlpack only works for device 0
+# Converting from CuPy to TF with dlpack works on all specified gpu if it is available
 array1 = cupy.array([random.uniform(0.0, 1.0) for i in range(10)], dtype=cupy.float32)
 dltensor = array1.toDlpack()
 x = tf.experimental.dlpack.from_dlpack(dltensor)
