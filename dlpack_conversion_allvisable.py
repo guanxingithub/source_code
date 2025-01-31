@@ -22,10 +22,8 @@ def set_gpu_option():
     gpus = tf.config.list_physical_devices('GPU')
     try:
         tf.config.set_visible_devices(gpus, 'GPU')
-        logical_gpus = tf.config.list_logical_devices('GPU')
-        print("Physical GPUs,", gpus, " to Logical GPU ", logical_gpus)
-        #for gpu in gpus:
-        #    tf.config.experimental.set_memory_growth(gpu, True)
+        for gpu in gpus:
+            tf.config.experimental.set_memory_growth(gpu, True)
     except RuntimeError as e:
         # Visible devices must be set before GPUs have been initialized
         print(e)
@@ -117,7 +115,6 @@ def main(args):
         # Step 3: Build and feed TensorFlow model
 
         if args.dlpack_mode in ["tf_to_pytorch", "pytorch_only"]:
-            print("tensor device is ", tensor.device)
             model = TorchDenseModel().to(f"cuda:{rank}")
             tensor = tensor.to(f"cuda:{rank}")
             output = model(tensor)
