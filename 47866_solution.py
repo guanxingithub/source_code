@@ -8,7 +8,7 @@ gpu_to_use = 1        # Errors
 
 gpus = tf.config.experimental.list_physical_devices("GPU")
 if gpus:
-    tf.config.experimental.set_visible_devices(gpus, "GPU")
+    tf.config.experimental.set_visible_devices(gpus, "GPU")   #set physical devices visible so that the logical devices are available for tf
     #tf.config.experimental.set_visible_devices(gpus[gpu_to_use], "GPU")
 
 # Converting from TF to CuPy with dlpack works for both devices
