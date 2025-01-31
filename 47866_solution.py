@@ -4,7 +4,7 @@ import random
 import tensorflow as tf
 
 # gpu_to_use = 0      # Works
-gpu_to_use = 1        # Errors
+gpu_to_use = 1        # after all physical devices are visible, this works
 
 gpus = tf.config.experimental.list_physical_devices("GPU")
 if gpus:
